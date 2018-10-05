@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Cadastro de Campeonato</title>
+
+	<script src="js/jquery.js"></script>
+	
+
+	<link href="css/bootstrap.min.css" rel=stylesheet>
+
+	<script>
+	$(document).ready(function(){
+		
+
+		$("#cadastro").click(function() {
+
+			var nome = $("#nome").val();
+			var ano = $("#ano").val();
+			var campeao = $("#campeao").val();
+			var vice = $("#vice").val();
+			var artilheiro = $("#artilheiro").val();
+			var pais = $("#pais").val();
+			
+				
+			var url = "/campeonato/cadastro/"+nome+"/"+ano+"/"+campeao+"/"+vice+"/"+artilheiro+"/"+pais+"";
+			
+			$.getJSON(url, function(data) {
+					
+			});
+
+		});
+
+	});
+
+	</script>
+	
+</head>
+<body>
+	<div class="container">
+		<h1>Cadastro de Campeonato</h1>
+		
+		<div class="form-row">
+			<div class="col-3">
+				<button id="pesquisa" type="button" class="btn btn-danger col-md-8">Pesquisar campeonato</button>
+			</div>
+		</div>
+		
+		<div class="form-row">
+			<div class="form-group col-md-5">
+				<label>Nome</label>
+				<input id="nome" class="form-control" Type="text" placeholder="Informe o campeonato">
+			</div>
+			
+			
+		
+			<div class="form-group col-md-5">
+				<label>Ano</label>
+				<input id="ano" class="form-control" Type="text" placeholder="Informe o ano">
+			</div>
+		
+			<div class="form-group col-md-5">
+				<label>Campeão</label>
+				<input id="campeao" class="form-control" Type="text" placeholder="Informe o campeão">
+			</div>
+			
+			<div class="form-group col-md-5">
+				<label>Vice-Campeão</label>
+				<input id="vice" class="form-control" Type="text" placeholder="Informe o vice-campeão">
+			</div>
+			
+			<div class="form-group col-md-5">
+				<label>Artilheiro</label>
+				<input id="artilheiro" class="form-control" Type="text" placeholder="Informe o artilheiro">
+			</div>
+			
+			<div class="form-group col-md-5">
+				<label>País</label>
+				<input id="pais" class="form-control" Type="text" placeholder="Informe o país">
+			</div>
+		</div>
+	    
+	     <div class="form-row">  
+	     	<div class="col-3">
+				<button id="cadastro" type="button" class="btn btn-danger col-md-8">Cadastrar campeonato</button>
+			</div>
+			<div class="col-3">
+				<button id="altera" type="button" class="btn btn-danger col-md-8">Alterar campeonato</button>
+			</div>
+			
+			<div class="col-3">
+				<button id="exclui" type="button" class="btn btn-danger col-md-8">Excluir campeonato</button>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

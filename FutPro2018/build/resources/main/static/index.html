@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>FutPro2018</title>
+	
+    
+	<script src="js/jquery.js"></script>
+	
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
+
+	<link href="css/bootstrap.min.css" rel=stylesheet>
+	
+	<!-- CARREGA COMBO DA ESPECIALIZAÇÃO PAÍS -->
+	
+	<script>
+		$(document).ready(function(){
+		
+			var url = "/campeonato/combo/pais/";
+			
+			$.getJSON(url, function(data) {
+				
+				var itemsMod = [];
+				
+				$.each(data, function(i){
+				
+					itemsMod.push("<option>" + this + "</option>");
+					
+				});
+							
+				$("#pais").append(itemsMod);
+					
+			});
+
+		});
+
+	</script>
+	
+	<!-- CARREGA COMBO DA ESPECIALIZAÇÃO ANO -->
+	<script>
+		$(document).ready(function(){
+		
+			var url = "/campeonato/combo/ano/";
+			
+			$.getJSON(url, function(data) {
+				
+				var itemsMod = [];
+				
+				$.each(data, function(i){
+				
+					itemsMod.push("<option>" + this + "</option>");
+					
+				});
+							
+				$("#ano").append(itemsMod);
+					
+			});
+
+		});
+
+	</script>
+	
+	<!-- CARREGA COMBO DA ESPECIALIZAÇÃO NOME -->
+	<script>
+		$(document).ready(function(){
+		
+			var url = "/campeonato/combo/nome/";
+			
+			$.getJSON(url, function(data) {
+				
+				var itemsMod = [];
+				
+				$.each(data, function(i){
+					
+					itemsMod.push("<option>" + this + "</option>");
+					
+				});
+							
+				$("#nome").append(itemsMod);
+					
+			});
+
+		});
+
+	</script>
+	
+	<!-- MÉTODOS PARA FAZER A BUSCA POR PÁIS -->
+	<script>
+	$(document).ready(function(){
+		
+
+		$("#buscaPais").click(function() {
+			
+			var pais = $( "#pais option:selected" ).text();
+				
+			$("#dadosCampeonato").empty();
+				
+			var url = "/campeonato/busca/pais/"+pais+"";
+				
+
+			$.getJSON(url, function(data) {
+					
+					var itens = [];
+					
+					$.each(data, function(i){
+					
+						itens.push("<tr> <td>" + this.nome + "</td><td>" + this.spec.ano + "</td><td>" + this.spec.campeao + "</td><td>"+ this.spec.viceCampeao + "</td><td>" + this.spec.artilheiro + "</td><td>" + this.spec.pais + "</td></tr>");
+						
+					});
+								
+					$("#dadosCampeonato").append(itens);
+					
+			});
+
+		});
+
+	});
+
+</script>
+	
+	<!-- MÉTODOS PARA FAZER A BUSCA POR ANO -->
+	<script>
+		$(document).ready(function(){
+			
+			$("#buscaAno").click(function() {
+
+				var ano = $( "#ano option:selected" ).text();
+					
+				$("#dadosCampeonato").empty();
+					
+				var url = "/campeonato/busca/ano/"+ano+"";
+					
+
+				$.getJSON(url, function(data) {
+						
+						var itens = [];
+						
+						$.each(data, function(i){
+						
+							itens.push("<tr> <td>" + this.nome + "</td><td>" + this.espc.ano + "</td><td>" + this.espc.campeao + "</td><td>"+ this.espc.vice + "</td><td>" + this.espc.artilheiro + "</td><td>" + this.espc.pais + "</td></tr>");
+							
+						});
+									
+						$("#dadosCampeonato").append(itens);
+						
+				});
+
+			});
+
+		});
+
+	</script>
+	
+	</script>
+	
+	<!-- MÉTODOS PARA FAZER A BUSCA POR NOME -->
+	<script>
+		$(document).ready(function(){
+			
+			$("#buscaNome").click(function() {
+
+				var nome = $( "#nome option:selected" ).text();
+					
+				$("#dadosCampeonato").empty();
+					
+				var url = "/campeonato/busca/nome/"+nome+"";
+					
+
+				$.getJSON(url, function(data) {
+						
+						var itens = [];
+						
+						$.each(data, function(i){
+						
+							itens.push("<tr> <td>" + this.nome + "</td><td>" + this.espc.ano + "</td><td>" + this.espc.campeao + "</td><td>"+ this.espc.vice + "</td><td>" + this.espc.artilheiro + "</td><td>" + this.espc.pais + "</td></tr>");
+							
+						});
+									
+						$("#dadosCampeonato").append(itens);
+						
+				});
+
+			});
+
+		});
+
+	</script>
+	
+	</head>
+
+
+	<body>
+		<div class="container">
+			<div class="form-row">
+				<h3>Consulta Campeonato</h3>
+			</div>
+		
+			<div class="form-row">
+				<div class="col-3">
+					<h3>Consulta por País</h3>
+				</div>
+				<div class="col-3">
+					<h3>Consulta por Ano</h3>
+				</div>
+				<div class="col-3">
+					<h3>Consulta por Nome</h3>
+				</div>
+			</div>
+				
+			<div class="form-row">	
+				<div class="col-3">
+	               	<select id="pais" class="input-large form-control">
+		                <option value="" selected="selected">Escolha o País</option>
+		            </select>
+				</div>
+				
+				<div class="col-3">
+					<select id="ano" class="input-large form-control">
+		                <option value="" selected="selected">Escolha o Ano</option>
+	               	</select>
+               	</div>
+               	
+               	<div class="col-3">
+					<select id="nome" class="input-large form-control">
+		                <option value="" selected="selected">Escolha o Campeonato</option>
+	               	</select>
+               	</div>
+            </div>
+            
+            <br>
+            
+            <div class="form-row">       
+				<div class="col-3">
+					<button id="buscaPais" class="btn btn-primary col-md-8">Buscar por País</button>
+				</div>
+				
+			   	<div class="col-3">
+	 				<button id="buscaAno" class="btn btn-primary col-md-8">Buscar por Ano</button>
+				</div>
+					
+				<div class="col-3">
+					<button id="buscaNome" class="btn btn-primary col-md-8">Buscar por Nome</button>
+				</div>	
+			</div>
+			
+			<br>
+       	
+       		<h3>Informações Campeonatos</h3>
+			<table class="table table-bordered"> 
+					<thead>
+						<tr> 
+							<th>Nome</th>
+							<th>Ano</th> 
+							<th>Campeão</th> 
+							<th>Vice-Campeoão</th> 
+							<th>Artilheiro</th>
+							<th>País</th>
+						</tr> 
+					</thead> 
+					
+					<tbody id="dadosCampeonato">
+						
+					</tbody> 
+			</table>
+		</div>
+		
+  </body>
+  
+</html>
